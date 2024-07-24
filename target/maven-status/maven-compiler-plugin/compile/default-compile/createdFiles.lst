@@ -1,0 +1,13 @@
+view\frame\BibliotecaFrame$2.class
+model\Libro.class
+model\Profesor.class
+model\Usuario.class
+view\frame\BibliotecaFrame$1.class
+model\LibroFisico.class
+view\Prestable.class
+model\LibroDigital.class
+model\Estudiante.class
+controller\BibliotecaController.class
+model\Biblioteca.class
+view\frame\BibliotecaFrame$3.class
+view\frame\BibliotecaFrame.class
