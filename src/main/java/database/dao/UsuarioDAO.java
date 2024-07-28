@@ -12,7 +12,7 @@ public class UsuarioDAO {
     private Connection connection;
 
     public UsuarioDAO() throws SQLException {
-        this.connection = DatabaseConnection.getConnection();
+        this.connection = DatabaseConnection.getInstance().getConnection();
     }
 
     public Usuario agregarUsuario(Usuario usuario) throws SQLException {
@@ -52,27 +52,6 @@ public class UsuarioDAO {
         PreparedStatement statementUsuario = connection.prepareStatement(sqlUsuario);
         statementUsuario.setInt(1, usuarioId);
         statementUsuario.executeUpdate();
-    }
-
-    public Usuario buscarUsuarioPorNombre(String nombre) throws SQLException {
-        String sql = "SELECT * FROM usuarios WHERE LOWER(nombre) = LOWER(?)";
-        PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setString(1, nombre);
-        ResultSet resultSet = statement.executeQuery();
-
-        if (resultSet.next()) {
-            int id = resultSet.getInt("id");
-            String rol = resultSet.getString("rol");
-            Usuario usuario;
-            if ("estudiante".equals(rol)) {
-                usuario = new Estudiante(id, resultSet.getString("nombre"));
-            } else {
-                usuario = new Profesor(id, resultSet.getString("nombre"));
-            }
-            return usuario;
-        } else {
-            return null;
-        }
     }
 
     public List<Usuario> obtenerTodosLosUsuarios() throws SQLException {

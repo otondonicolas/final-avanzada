@@ -16,7 +16,7 @@ public class PrestamoDAO {
     private Connection connection;
 
     public PrestamoDAO() throws SQLException {
-        this.connection = DatabaseConnection.getConnection();
+        this.connection = DatabaseConnection.getInstance().getConnection();
     }
 
     public void agregarPrestamo(Usuario usuario, Libro libro) throws SQLException {

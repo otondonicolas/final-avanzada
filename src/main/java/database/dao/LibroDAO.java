@@ -1,9 +1,9 @@
 package database.dao;
 
+import database.DatabaseConnection;
 import model.Libro;
 import model.LibroDigital;
 import model.LibroFisico;
-import database.DatabaseConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,7 +16,7 @@ public class LibroDAO {
     private Connection connection;
 
     public LibroDAO() throws SQLException {
-        this.connection = DatabaseConnection.getConnection();
+        this.connection = DatabaseConnection.getInstance().getConnection();
     }
 
     public void agregarLibro(Libro libro) throws SQLException {
@@ -50,27 +50,6 @@ public class LibroDAO {
         PreparedStatement stmt = connection.prepareStatement(query);
         stmt.setInt(1, libro.getId());
         stmt.executeUpdate();
-    }
-
-    public Libro buscarLibroPorTitulo(String titulo) throws SQLException {
-        String sql = "SELECT * FROM libros WHERE LOWER(titulo) = LOWER(?)";
-        PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setString(1, titulo);
-        ResultSet resultSet = statement.executeQuery();
-
-        if (resultSet.next()) {
-            Integer id = resultSet.getInt("id");
-            String tipo = resultSet.getString("tipo");
-            Libro libro;
-            if ("fisico".equals(tipo)) {
-                libro = new LibroFisico(id, titulo);
-            } else {
-                libro = new LibroDigital(id, titulo);
-            }
-            return libro;
-        } else {
-            return null;
-        }
     }
 
     public List<Libro> obtenerTodosLosLibros() throws SQLException {
