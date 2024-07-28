@@ -1,6 +1,6 @@
 package controller;
 
-import view.frame.BibliotecaFrame;
+import view.BibliotecaFrame;
 
 import javax.swing.*;
 

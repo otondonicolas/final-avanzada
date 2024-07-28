@@ -1,7 +1,7 @@
-package view.frame.libro;
+package view.libro;
 
 import model.Prestamo;
-import database.dao.PrestamoDAO;
+import service.impl.PrestamoDAO;
 
 import javax.swing.*;
 import java.awt.*;

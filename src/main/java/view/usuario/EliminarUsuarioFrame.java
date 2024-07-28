@@ -1,7 +1,7 @@
-package view.frame.usuario;
+package view.usuario;
 
 import model.Usuario;
-import database.dao.UsuarioDAO;
+import service.impl.UsuarioDAO;
 
 import javax.swing.*;
 import java.awt.*;

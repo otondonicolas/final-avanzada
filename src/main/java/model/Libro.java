@@ -1,12 +1,10 @@
 package model;
 
-import view.Prestable;
-
 import javax.persistence.*;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public abstract class Libro implements Prestable {
+public abstract class Libro {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -32,7 +30,4 @@ public abstract class Libro implements Prestable {
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
-
-    @Override
-    public abstract void prestar();
 }

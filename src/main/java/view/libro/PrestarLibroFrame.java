@@ -1,10 +1,10 @@
-package view.frame.libro;
+package view.libro;
 
 import model.Libro;
 import model.Usuario;
-import database.dao.LibroDAO;
-import database.dao.PrestamoDAO;
-import database.dao.UsuarioDAO;
+import service.impl.LibroDAO;
+import service.impl.PrestamoDAO;
+import service.impl.UsuarioDAO;
 
 import javax.swing.*;
 import java.awt.*;

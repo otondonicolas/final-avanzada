@@ -18,12 +18,7 @@ public class Profesor extends Usuario {
     }
 
     @Override
-    public void solicitarLibro(Libro libro) {
-        libro.prestar();
-    }
-
-    @Override
-    public String toString(){
+    public String toString() {
         return getNombre();
     }
 }

@@ -1,9 +1,9 @@
-package view.frame.libro;
+package view.libro;
 
 import model.Libro;
 import model.LibroDigital;
 import model.LibroFisico;
-import database.dao.LibroDAO;
+import service.impl.LibroDAO;
 
 import javax.swing.*;
 import java.awt.*;

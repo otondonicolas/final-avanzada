@@ -1,7 +1,12 @@
-package view.frame;
+package view;
 
 import view.frame.libro.*;
 import view.frame.usuario.*;
+import view.libro.*;
+import view.usuario.AgregarUsuarioFrame;
+import view.usuario.ConsultarUsuariosFrame;
+import view.usuario.EliminarUsuarioFrame;
+import view.usuario.ModificarUsuarioFrame;
 
 import javax.swing.*;
 import java.awt.*;

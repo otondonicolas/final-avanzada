@@ -30,6 +30,4 @@ public abstract class Usuario {
     public String getNombre() {
         return nombre;
     }
-
-    public abstract void solicitarLibro(Libro libro);
 }

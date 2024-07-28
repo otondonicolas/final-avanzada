@@ -1,9 +1,10 @@
-package database.dao;
+package service.impl;
 
 import database.DatabaseConnection;
 import model.Libro;
 import model.LibroDigital;
 import model.LibroFisico;
+import service.LibroCRUD;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,13 +13,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LibroDAO {
+public class LibroDAO implements LibroCRUD {
     private Connection connection;
 
     public LibroDAO() throws SQLException {
         this.connection = DatabaseConnection.getInstance().getConnection();
     }
 
+    @Override
     public void agregarLibro(Libro libro) throws SQLException {
         String sql = "INSERT INTO libros (titulo, tipo) VALUES (?, ?)";
         PreparedStatement statement = connection.prepareStatement(sql);
@@ -27,6 +29,7 @@ public class LibroDAO {
         statement.executeUpdate();
     }
 
+    @Override
     public void actualizarLibro(Libro libro) throws SQLException {
         String sql = "UPDATE libros SET titulo = ?, tipo = ? WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
@@ -36,6 +39,7 @@ public class LibroDAO {
         statement.executeUpdate();
     }
 
+    @Override
     public void eliminarLibro(Libro libro) throws SQLException {
         String checkQuery = "SELECT COUNT(*) FROM prestamos WHERE idLibro = ?";
         PreparedStatement checkStmt = connection.prepareStatement(checkQuery);
@@ -52,6 +56,7 @@ public class LibroDAO {
         stmt.executeUpdate();
     }
 
+    @Override
     public List<Libro> obtenerTodosLosLibros() throws SQLException {
         String sql = "SELECT * FROM libros";
         PreparedStatement statement = connection.prepareStatement(sql);

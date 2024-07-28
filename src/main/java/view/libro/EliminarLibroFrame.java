@@ -1,7 +1,7 @@
-package view.frame.libro;
+package view.libro;
 
 import model.Libro;
-import database.dao.LibroDAO;
+import service.impl.LibroDAO;
 
 import javax.swing.*;
 import java.awt.*;

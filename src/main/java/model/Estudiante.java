@@ -18,11 +18,6 @@ public class Estudiante extends Usuario {
     }
 
     @Override
-    public void solicitarLibro(Libro libro) {
-        libro.prestar();
-    }
-
-    @Override
     public String toString(){
         return getNombre();
     }

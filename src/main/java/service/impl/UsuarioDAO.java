@@ -1,36 +1,31 @@
-package database.dao;
+package service.impl;
 
 import model.Usuario;
 import model.Estudiante;
 import model.Profesor;
 import database.DatabaseConnection;
+import service.UsuarioCRUD;
 
 import java.sql.*;
 import java.util.List;
 
-public class UsuarioDAO {
+public class UsuarioDAO implements UsuarioCRUD {
     private Connection connection;
 
     public UsuarioDAO() throws SQLException {
         this.connection = DatabaseConnection.getInstance().getConnection();
     }
 
-    public Usuario agregarUsuario(Usuario usuario) throws SQLException {
+    @Override
+    public void agregarUsuario(Usuario usuario) throws SQLException {
         String sql = "INSERT INTO usuarios (nombre, rol) VALUES (?, ?)";
         PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         statement.setString(1, usuario.getNombre());
         statement.setString(2, usuario instanceof Estudiante ? "estudiante" : "profesor");
         statement.executeUpdate();
-
-        ResultSet generatedKeys = statement.getGeneratedKeys();
-        if (generatedKeys.next()) {
-            int id = generatedKeys.getInt(1);
-            usuario = usuario instanceof Estudiante ? new Estudiante(id, usuario.getNombre()) : new Profesor(id, usuario.getNombre());
-        }
-
-        return usuario;
     }
 
+    @Override
     public void actualizarUsuario(Usuario usuario) throws SQLException {
         String sql = "UPDATE usuarios SET nombre = ?, rol = ? WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
@@ -40,6 +35,7 @@ public class UsuarioDAO {
         statement.executeUpdate();
     }
 
+    @Override
     public void eliminarUsuario(Integer usuarioId) throws SQLException {
         // Primero, se eliminan los prestamos del usuario
         String sqlPrestamos = "DELETE FROM prestamos WHERE idUsuario = ?";
@@ -54,6 +50,7 @@ public class UsuarioDAO {
         statementUsuario.executeUpdate();
     }
 
+    @Override
     public List<Usuario> obtenerTodosLosUsuarios() throws SQLException {
         String sql = "SELECT * FROM usuarios";
         Statement statement = connection.createStatement();
